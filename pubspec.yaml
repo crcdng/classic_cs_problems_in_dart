@@ -1,0 +1,16 @@
+name: classic_computer_science
+description: Code from the book "Classic Computer Science Problems in Swift" translated to Dart 
+version: 1.0.0
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: '^3.9.0'
+
+# Add regular dependencies here.
+dependencies:
+  collection: ^1.19.1
+  # path: ^1.8.0
+
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.24.0

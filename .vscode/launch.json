@@ -1,0 +1,26 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "classic_computer_science (debug)",
+            "request": "launch",
+            "type": "dart",
+            "program": "bin/classic_computer_science.dart",
+            "args": ["02_miss"],
+            "cwd": "${workspaceFolder}",
+            "flutterMode": "debug"
+        },
+        {
+            "name": "classic_computer_science",
+            "request": "launch",
+            "type": "dart",
+            "program": "bin/classic_computer_science.dart",
+            "args": ["02_miss"],
+            "cwd": "${workspaceFolder}",
+            "flutterMode": "release"
+        },
+    ]
+}
