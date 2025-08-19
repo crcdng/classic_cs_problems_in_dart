@@ -10,8 +10,6 @@ To run the first example, enter the project directory and run from the command l
 
 To debug the first example in VSCode, edit the `args` field in `.vscode/launch.json`
 
-```dart bin/classic_computer_science.dart 01_fib```
-
 ## Progress
 
 ### Chapter 1: Small Problems
@@ -20,22 +18,22 @@ To debug the first example in VSCode, edit the `args` field in `.vscode/launch.j
 - [x] Encryption: 01_enc
 - [x] Calculating Pi: 01_pi
 - [x] Towers of Hanoi: 01_hanoi
-- [] Exercises
+- [ ] Exercises
 
 ### Chapter 2: Search Problems
 - [x] DNA: 02_dna
 - [x] Maze Solving: 02_maze
 - [x] Missionaries and Cannibals (depends on Maze Solving): 02_miss
-- [] Exercises
+- [ ] Exercises
 
 ### Chapter 3: Constraint Satisfaction Problems
-- [] Framework
-- [] Map Coloring
-- [] Eight Queens
-- [] Word Search
-- [] Send More Money
-- [] Circuit Board
-- [] Exercises
+- [ ] Framework
+- [ ] Map Coloring
+- [ ] Eight Queens
+- [ ] Word Search
+- [ ] Send More Money
+- [ ] Circuit Board
+- [ ] Exercises
 
 ### Chapter 4: Graph Problems
 
@@ -45,12 +43,6 @@ To debug the first example in VSCode, edit the `args` field in `.vscode/launch.j
 
 ### Chapter 7: Fairly Simple Neural Networks
 
-
 ### Chapter 8: Miscellaneous problems
-- [] Knapsack
-- [] Traveling Salesman
-- [] Mnemonics
-- [] TicTacToe
-- [] Exercises
 
-In some rare cases, where it made sense to me, I have rearranged stuff or renamed variables. For example in Chapter 2 in function generateMaze(), I call the the third parameter `blockProbability` instead of `sparseness`.
+Where it made sense to me, I rearranged stuff or renamed variables. For example in Chapter 2 in function generateMaze(), I call the the third parameter `blockProbability` instead of `sparseness`.
