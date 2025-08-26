@@ -27,8 +27,8 @@ To debug the first example in VSCode, edit the `args` field in `.vscode/launch.j
 - [ ] Exercises
 
 ### Chapter 3: Constraint Satisfaction Problems
-- [ ] CSP Framework
-- [ ] Map Coloring: 03_map
+- [x] CSP Framework
+- [x] Map Coloring: 03_map
 - [ ] Eight Queens: 03_queens
 - [ ] Word Search: 03_word
 - [ ] Send More Money: 03_money
