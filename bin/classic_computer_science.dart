@@ -10,6 +10,8 @@ import 'package:classic_computer_science/chapter_02_dna.dart' as dna;
 import 'package:classic_computer_science/chapter_02_maze.dart' as maze;
 import 'package:classic_computer_science/chapter_02_missionaries_cannibals.dart'
     as mc;
+import 'package:classic_computer_science/chapter_03_csp.dart' as csp;
+import 'package:classic_computer_science/chapter_03_map_coloring.dart' as map;
 
 Map<String, Function> select = {
   "01_fib": chapter01fibonacci,
@@ -20,6 +22,7 @@ Map<String, Function> select = {
   "02_dna": chapter02dna,
   "02_maze": chapter02maze,
   "02_miss": chapter02missionariesCannibals,
+  "03_map": chapter03mapColoringProblem,
 };
 
 void main(List<String> arguments) {
@@ -219,5 +222,71 @@ void chapter02missionariesCannibals() {
     startMC.printMCSolution(path: path);
   } else {
     print("no solution");
+  }
+}
+
+void chapter03mapColoringProblem() {
+  final variables = [
+    "Western Australia",
+    "Northern Territory",
+    "South Australia",
+    "Queensland",
+    "New South Wales",
+    "Victoria",
+    "Tasmania",
+  ];
+  Map<String, List<String>> domains = {};
+  for (var variable in variables) {
+    domains[variable] = ["r", "g", "b"];
+  }
+  var mapColoringCsp = csp.CSP<String, String>(variables, domains);
+  mapColoringCsp.addConstraint(
+    map.MapColoringConstraint(
+      place1: "Western Australia",
+      place2: "Northern Territory",
+    ),
+  );
+  mapColoringCsp.addConstraint(
+    map.MapColoringConstraint(
+      place1: "Western Australia",
+      place2: "South Australia",
+    ),
+  );
+  mapColoringCsp.addConstraint(
+    map.MapColoringConstraint(
+      place1: "South Australia",
+      place2: "Northern Territory",
+    ),
+  );
+  mapColoringCsp.addConstraint(
+    map.MapColoringConstraint(
+      place1: "Queensland",
+      place2: "Northern Territory",
+    ),
+  );
+  mapColoringCsp.addConstraint(
+    map.MapColoringConstraint(place1: "Queensland", place2: "South Australia"),
+  );
+  mapColoringCsp.addConstraint(
+    map.MapColoringConstraint(place1: "Queensland", place2: "New South Wales"),
+  );
+  mapColoringCsp.addConstraint(
+    map.MapColoringConstraint(
+      place1: "New South Wales",
+      place2: "South Australia",
+    ),
+  );
+  mapColoringCsp.addConstraint(
+    map.MapColoringConstraint(place1: "Victoria", place2: "South Australia"),
+  );
+  mapColoringCsp.addConstraint(
+    map.MapColoringConstraint(place1: "Victoria", place2: "New South Wales"),
+  );
+
+  final solution = csp.backtrackingSearch(mapColoringCsp);
+  if (solution != null) {
+    print(solution);
+  } else {
+    print("Couldn't find solution!");
   }
 }

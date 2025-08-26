@@ -27,12 +27,12 @@ To debug the first example in VSCode, edit the `args` field in `.vscode/launch.j
 - [ ] Exercises
 
 ### Chapter 3: Constraint Satisfaction Problems
-- [ ] Framework
-- [ ] Map Coloring
-- [ ] Eight Queens
-- [ ] Word Search
-- [ ] Send More Money
-- [ ] Circuit Board
+- [ ] CSP Framework
+- [ ] Map Coloring: 03_map
+- [ ] Eight Queens: 03_queens
+- [ ] Word Search: 03_word
+- [ ] Send More Money: 03_money
+- [ ] Circuit Board: 03_circuit
 - [ ] Exercises
 
 ### Chapter 4: Graph Problems

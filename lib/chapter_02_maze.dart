@@ -18,6 +18,7 @@ enum Cell implements Comparable<Cell> {
 
 typedef Maze = List<List<Cell>>;
 
+// NOTE I call the third Parameter 'blockProbability' instead of 'sparseness'
 Maze generateMaze({
   required int rows,
   required int cols,
