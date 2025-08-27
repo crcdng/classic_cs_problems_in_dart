@@ -149,7 +149,7 @@ Node<ST>? dfs<ST>(
       return currentNode;
     }
     // check where we can go next and haven't explored
-    for (var child in successorFn(currentState)) {
+    for (final child in successorFn(currentState)) {
       if (!explored.contains(child)) {
         explored.add(child);
         frontier.push(Node(state: child, parent: currentNode));
@@ -195,7 +195,7 @@ Node<ST>? bfs<ST>(
       return currentNode;
     }
     // check where we can go next and haven't explored
-    for (var child in successorFn(currentState)) {
+    for (final child in successorFn(currentState)) {
       if (!explored.contains(child)) {
         explored.add(child);
         frontier.push(Node(state: child, parent: currentNode));
@@ -230,7 +230,7 @@ void markMaze(
   MazeLocation start,
   MazeLocation goal,
 ) {
-  for (var ml in locationPath) {
+  for (final ml in locationPath) {
     maze[ml.row][ml.col] = Cell.path; // "P", see above
   }
   maze[start.row][start.col] = Cell.start; // "S"
@@ -278,7 +278,7 @@ Node<ST>? astar<ST>(
     if (goalTestFn(currentState)) {
       return currentNode;
     }
-    for (var child in successorFn(currentState)) {
+    for (final child in successorFn(currentState)) {
       final newCost = currentNode.cost + 1; // simple cost assumption
       if (explored[child] == null || explored[child]! > newCost) {
         explored[child] = newCost;

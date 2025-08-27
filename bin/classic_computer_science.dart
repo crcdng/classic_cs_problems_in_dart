@@ -12,6 +12,10 @@ import 'package:classic_computer_science/chapter_02_missionaries_cannibals.dart'
     as mc;
 import 'package:classic_computer_science/chapter_03_csp.dart' as csp;
 import 'package:classic_computer_science/chapter_03_map_coloring.dart' as map;
+import 'package:classic_computer_science/chapter_03_eight_queens.dart'
+    as queens;
+import 'package:classic_computer_science/chapter_03_send_more_money.dart'
+    as money;
 
 Map<String, Function> select = {
   "01_fib": chapter01fibonacci,
@@ -23,6 +27,8 @@ Map<String, Function> select = {
   "02_maze": chapter02maze,
   "02_miss": chapter02missionariesCannibals,
   "03_map": chapter03mapColoringProblem,
+  "03_queens": chapter03eightQueensProblem,
+  "03_money": chapter03sendMoreMoney,
 };
 
 void main(List<String> arguments) {
@@ -235,11 +241,18 @@ void chapter03mapColoringProblem() {
     "Victoria",
     "Tasmania",
   ];
-  Map<String, List<String>> domains = {};
-  for (var variable in variables) {
+
+  final domains = <String, List<String>>{};
+
+  for (final variable in variables) {
     domains[variable] = ["r", "g", "b"];
   }
-  var mapColoringCsp = csp.CSP<String, String>(variables, domains);
+
+  final mapColoringCsp = csp.CSP<String, String>(
+    variables: variables,
+    domains: domains,
+  );
+
   mapColoringCsp.addConstraint(
     map.MapColoringConstraint(
       place1: "Western Australia",
@@ -284,6 +297,51 @@ void chapter03mapColoringProblem() {
   );
 
   final solution = csp.backtrackingSearch(mapColoringCsp);
+  if (solution != null) {
+    print(solution);
+  } else {
+    print("Couldn't find solution!");
+  }
+}
+
+void chapter03eightQueensProblem() {
+  final cols = List.generate(8, (i) => i + 1, growable: false);
+  final rows = <int, List<int>>{};
+  for (final variable in cols) {
+    rows[variable] = List.generate(8, (i) => i + 1, growable: false);
+  }
+  final queensCsp = csp.CSP<int, int>(variables: cols, domains: rows);
+
+  queensCsp.addConstraint(queens.EightQueensConstraint(columns: cols));
+  final solution = csp.backtrackingSearch(queensCsp);
+
+  if (solution != null) {
+    print(solution);
+  } else {
+    print("Couldn't find solution!");
+  }
+}
+
+void chapter03sendMoreMoney() {
+  final letters = ["S", "E", "N", "D", "M", "O", "R", "Y"];
+  final possibleDigits = <String, List<int>>{};
+
+  for (var letter in letters) {
+    possibleDigits[letter] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  }
+
+  // pre-assign some values to speed up computation
+  possibleDigits["S"] = [9];
+  possibleDigits["M"] = [1];
+  possibleDigits["O"] = [0];
+
+  final moneyCsp = csp.CSP<String, int>(
+    variables: letters,
+    domains: possibleDigits,
+  );
+  final moneyConstraint = money.SendMoreMoneyConstraint(letters: letters);
+  moneyCsp.addConstraint(moneyConstraint);
+  final solution = csp.backtrackingSearch(moneyCsp);
   if (solution != null) {
     print(solution);
   } else {

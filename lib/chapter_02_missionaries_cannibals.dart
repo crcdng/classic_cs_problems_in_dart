@@ -94,7 +94,7 @@ class MCState implements Comparable<MCState> {
   void printMCSolution({required List<MCState> path}) {
     var oldState = path.first;
     print(oldState);
-    for (var currentState in path.skip(1)) {
+    for (final currentState in path.skip(1)) {
       var wm = currentState.missionaries;
       var wc = currentState.cannibals;
       var em = maxNum - wm;

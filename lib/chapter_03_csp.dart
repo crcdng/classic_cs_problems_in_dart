@@ -6,9 +6,9 @@ class CSP<V extends Object, D> {
   // mapping a variable to a list of constraints
   late Map<V, List<Constraint<V, D>>> constraints;
 
-  CSP(this.variables, this.domains) {
+  CSP({required this.variables, required this.domains}) {
     constraints = <V, List<Constraint<V, D>>>{};
-    for (var variable in variables) {
+    for (final variable in variables) {
       constraints[variable] = <Constraint<V, D>>[];
       if (domains[variable] == null) {
         print("Error: Missing domain for variable $variable.");
@@ -18,7 +18,7 @@ class CSP<V extends Object, D> {
 
   void addConstraint(Constraint<V, D> constraint) {
     // constraint.vars is a method
-    for (var variable in constraint.vars()) {
+    for (final variable in constraint.vars()) {
       if (!variables.contains(variable)) {
         print(
           "Error: Could not find variable $variable from constraint $constraint in CSP.",
@@ -29,11 +29,10 @@ class CSP<V extends Object, D> {
   }
 }
 
-// NOTE making this abstract avoids subtle errors, e.g not implementing vars() is a subclass
+// NOTE making this class abstract avoids subtle errors, e.g by not implementing vars() in a subclass
 abstract class Constraint<V, D> {
-  bool isSatisfied(Map<V, D> assignment);
-
   List<V> vars();
+  bool isSatisfied(Map<V, D> assignment);
 }
 
 Map<V, D>? backtrackingSearch<V extends Object, D>(
@@ -48,7 +47,6 @@ Map<V, D>? backtrackingSearch<V extends Object, D>(
 
   // what are the unassigned variables?
   var unassigned = csp.variables.where((v) => assignment?[v] == null);
-
   // get the domain of the first unassigned variable
   V variable;
   List<D>? domain;
@@ -62,8 +60,9 @@ Map<V, D>? backtrackingSearch<V extends Object, D>(
   domain = csp.domains[variable];
 
   if (domain != null) {
-    for (var value in domain) {
-      var localAssignment = assignment;
+    for (final value in domain) {
+      // NOTE in Dart a copy is required instead of an assignment
+      var localAssignment = Map<V, D>.from(assignment);
       localAssignment[variable] = value;
       // if the value is consistent with the current assignment we continue
       if (isConsistent(variable, value, localAssignment, csp)) {
@@ -86,7 +85,7 @@ bool isConsistent<V extends Object, D>(
   Map<V, D> assignment,
   CSP<V, D> csp,
 ) {
-  for (var constraint in csp.constraints[variable] ?? []) {
+  for (final constraint in csp.constraints[variable] ?? []) {
     if (!(constraint.isSatisfied(assignment) as bool)) {
       /// TODO check why bool is not inferred
       return false;

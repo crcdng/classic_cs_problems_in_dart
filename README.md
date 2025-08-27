@@ -27,17 +27,26 @@ To debug the first example in VSCode, edit the `args` field in `.vscode/launch.j
 - [ ] Exercises
 
 ### Chapter 3: Constraint Satisfaction Problems
-- [x] CSP Framework
+- [x] CSP Framework (the following problems depend on this)
 - [x] Map Coloring: 03_map
-- [ ] Eight Queens: 03_queens
+- [x] Eight Queens: 03_queens
 - [ ] Word Search: 03_word
-- [ ] Send More Money: 03_money
+- [x] SEND + MORE = MONEY: 03_money
 - [ ] Circuit Board: 03_circuit
 - [ ] Exercises
 
 ### Chapter 4: Graph Problems
+- [ ] Graph Framework (the following problems depend on this)
+- [ ] Shortest path: 04_shortest
+- [ ] Minimizing cost: 04_cost
+- [ ] Dijkstra’s algorithm: 04_dijkstra
+- [ ] Exercises
 
 ### Chapter 5: Genetic Algorithms
+- [ ] Generic algorithm (the following problems depend on this)
+- [ ] A naive test: 05_test
+- [ ] SEND + MORE = MONEY revisited: 05_money
+- [ ] Exercises
 
 ### Chapter 6: K-means Clustering
 

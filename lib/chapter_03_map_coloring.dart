@@ -13,6 +13,7 @@ final class MapColoringConstraint extends Constraint<String, String> {
 
   @override
   bool isSatisfied(Map<String, String> assignment) {
+    // if one or both variables don't have domain values assigned, the constraint is "trivially" satisfied
     if (assignment[place1] == null || assignment[place2] == null) {
       return true;
     }
