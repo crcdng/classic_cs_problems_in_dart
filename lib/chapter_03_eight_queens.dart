@@ -13,6 +13,8 @@ final class EightQueensConstraint extends Constraint<int, int> {
   @override
   bool isSatisfied(Map<int, int> assignment) {
     // q1c = queen 1 column, q1r = queen 1 row
+
+    // TODO check if there is a more elegant way
     for (MapEntry<int, int> entry in assignment.entries) {
       var q1c = entry.key;
       var q1r = entry.value;

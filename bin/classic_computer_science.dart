@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:classic_computer_science/chapter_01_compression.dart'
     as compression;
 import 'package:classic_computer_science/chapter_01_encryption.dart'
@@ -14,6 +16,7 @@ import 'package:classic_computer_science/chapter_03_csp.dart' as csp;
 import 'package:classic_computer_science/chapter_03_map_coloring.dart' as map;
 import 'package:classic_computer_science/chapter_03_eight_queens.dart'
     as queens;
+import 'package:classic_computer_science/chapter_03_word_search.dart' as word;
 import 'package:classic_computer_science/chapter_03_send_more_money.dart'
     as money;
 
@@ -28,6 +31,7 @@ Map<String, Function> select = {
   "02_miss": chapter02missionariesCannibals,
   "03_map": chapter03mapColoringProblem,
   "03_queens": chapter03eightQueensProblem,
+  "03_word": chapter03wordSearch,
   "03_money": chapter03sendMoreMoney,
 };
 
@@ -40,6 +44,7 @@ void main(List<String> arguments) {
     try {
       select[arguments[0]]!();
     } catch (e) {
+      print(e);
       print("Invalid example selected: ${arguments[0]}");
       print("Available examples:");
       select.forEach((key, value) => print(key));
@@ -322,11 +327,49 @@ void chapter03eightQueensProblem() {
   }
 }
 
-void chapter03sendMoreMoney() {
-  final letters = ["S", "E", "N", "D", "M", "O", "R", "Y"];
-  final possibleDigits = <String, List<int>>{};
+void chapter03wordSearch() {
+  final grid = word.generateGrid(rows: 9, columns: 9);
 
-  for (var letter in letters) {
+  final words = ["MATTHEW", "JOE", "MARY", "SARAH", "SALLY"];
+  final locations = <String, List<List<word.GridLocation>>>{};
+
+  for (final w in words) {
+    locations[w] = word.generateDomain(w, grid);
+  }
+
+  final wordsearch = csp.CSP<String, List<word.GridLocation>>(
+    variables: words,
+    domains: locations,
+  );
+  wordsearch.addConstraint(word.WordSearchConstraint(words: words));
+
+  final solution = csp.backtrackingSearch(wordsearch);
+
+  if (solution != null) {
+    // TODO check if there is a more elegant way
+    for (MapEntry<String, List<word.GridLocation>> entry in solution.entries) {
+      var w = entry.key;
+      var gridLocations = entry.value;
+      final gridLocs = Random().nextBool()
+          ? gridLocations
+          : gridLocations.reversed
+                .toList(); // randomly reverse word half the time
+      for (var (index, letter) in w.split("").indexed) {
+        var (row, col) = (gridLocs[index].row, gridLocations[index].col);
+        grid[row][col] = letter;
+      }
+    }
+    word.printGrid(grid);
+  } else {
+    print("Couldn't find solution!");
+  }
+}
+
+void chapter03sendMoreMoney() {
+  final letters = <money.Character>["S", "E", "N", "D", "M", "O", "R", "Y"];
+  final possibleDigits = <money.Character, List<int>>{};
+
+  for (final letter in letters) {
     possibleDigits[letter] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   }
 
@@ -335,7 +378,7 @@ void chapter03sendMoreMoney() {
   possibleDigits["M"] = [1];
   possibleDigits["O"] = [0];
 
-  final moneyCsp = csp.CSP<String, int>(
+  final moneyCsp = csp.CSP<money.Character, int>(
     variables: letters,
     domains: possibleDigits,
   );

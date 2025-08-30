@@ -1,17 +1,19 @@
 import 'package:classic_computer_science/chapter_03_csp.dart';
 
-final class SendMoreMoneyConstraint extends Constraint<String, int> {
-  List<String> letters;
+typedef Character = String;
+
+final class SendMoreMoneyConstraint extends Constraint<Character, int> {
+  List<Character> letters;
 
   SendMoreMoneyConstraint({required this.letters});
 
   @override
-  List<String> vars() {
+  List<Character> vars() {
     return letters;
   }
 
   @override
-  bool isSatisfied(Map<String, int> assignment) {
+  bool isSatisfied(Map<Character, int> assignment) {
     // if there are duplicate values then it's not correct
     final d = assignment.values.toSet();
     if (d.length < assignment.length) {

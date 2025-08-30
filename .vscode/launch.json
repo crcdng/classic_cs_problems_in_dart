@@ -9,7 +9,7 @@
             "request": "launch",
             "type": "dart",
             "program": "bin/classic_computer_science.dart",
-            "args": ["02_miss"],
+            "args": ["03_word"],
             "cwd": "${workspaceFolder}",
             "flutterMode": "debug"
         },
@@ -18,7 +18,7 @@
             "request": "launch",
             "type": "dart",
             "program": "bin/classic_computer_science.dart",
-            "args": ["02_miss"],
+            "args": ["03_word"],
             "cwd": "${workspaceFolder}",
             "flutterMode": "release"
         },

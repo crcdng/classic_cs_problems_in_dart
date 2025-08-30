@@ -30,7 +30,7 @@ To debug the first example in VSCode, edit the `args` field in `.vscode/launch.j
 - [x] CSP Framework (the following problems depend on this)
 - [x] Map Coloring: 03_map
 - [x] Eight Queens: 03_queens
-- [ ] Word Search: 03_word
+- [x] Word Search: 03_word
 - [x] SEND + MORE = MONEY: 03_money
 - [ ] Circuit Board: 03_circuit
 - [ ] Exercises

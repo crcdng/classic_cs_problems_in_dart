@@ -29,7 +29,7 @@ class CSP<V extends Object, D> {
   }
 }
 
-// NOTE making this class abstract avoids subtle errors, e.g by not implementing vars() in a subclass
+// NOTE making this class abstract avoids subtle errors by not implementing a method in a subclass
 abstract class Constraint<V, D> {
   List<V> vars();
   bool isSatisfied(Map<V, D> assignment);
